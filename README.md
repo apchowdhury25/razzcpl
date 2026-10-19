@@ -16,12 +16,25 @@ Open `http://127.0.0.1:8765/`. Binding to `127.0.0.1` keeps the preview on IPv4.
 
 ## Deploy on Hostinger
 
-1. In hPanel, add the domain `razzcpl.com` and turn on SSL.
-2. Open File Manager, go to `public_html`, and upload the contents of this repository. `index.html` must sit in `public_html`, not inside an extra folder.
-3. Create the mailbox `hello@razzcpl.com`. Hostinger accepts the form’s From address only when that mailbox exists.
-4. Send a test from the contact page. If it fails, the page tells the visitor to write to the same address. The inbox is set at the top of `contact.php`.
+The site is static HTML plus `contact.php`. `package.json` is there so hPanel’s Node.js Git import can see the repository. The build copies the site into `dist/` and does not start a Node server.
 
-Do not upload the `.git` folder.
+### Git import
+
+1. In hPanel, open **Websites** → **Add Website** → **Node.js web app** → **Import Git repository**.
+2. Refresh the repository list and choose `razzcpl`.
+3. On the deploy settings screen, use:
+   - Framework: **Other**
+   - Branch: `main`
+   - Build command: `build`
+   - Output directory: `dist`
+   - Entry file: leave empty
+4. Leave the entry file empty. An entry file would run a Node process and Apache would stop serving `contact.php`.
+5. Create the mailbox `hello@razzcpl.com` and turn on SSL. Hostinger accepts the form’s From address only when that mailbox exists.
+6. Send a test from the contact page. If it fails, the page tells the visitor to write to the same address. The inbox is set at the top of `contact.php`.
+
+### File Manager
+
+You can also upload the contents of `dist/` (after `npm run build`) into `public_html`. `index.html` must sit in `public_html`, not inside an extra folder. Do not upload `.git`, `node_modules`, or the repository root as a nested folder.
 
 ## Replace before launch
 

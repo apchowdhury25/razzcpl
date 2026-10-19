@@ -1,0 +1,11 @@
+{
+  "name": "razzcpl",
+  "private": true,
+  "description": "Razz Construction and Properties static site for razzcpl.com",
+  "scripts": {
+    "build": "node scripts/build-static.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
