@@ -16,20 +16,20 @@ Open `http://127.0.0.1:8765/`. Binding to `127.0.0.1` keeps the preview on IPv4.
 
 ## Deploy on Hostinger
 
-Hostinger’s Node.js importer needs an application it can start. `server.js` serves the pages and accepts the contact form. `npm run build` also copies the site into `dist/` for a static upload.
+`npm run build` copies the site into `dist/`. Hostinger’s publish step copies that folder to `public_html`. The build in the log succeeded and then failed while syncing `public_html` because the output directory was set to none.
 
 ### Git import
 
 1. In hPanel, open the website → **Deployments** → **Deployment settings**.
 2. Set:
-   - Framework: **Express**
+   - Framework: **Other**
    - Branch: `main`
    - Node.js: **22**
    - Build command: `build`
-   - Output directory: leave empty
-   - Entry file: `server.js`
-3. Save and redeploy. A push to `main` redeploys after this is saved.
-4. Create the mailbox `hello@razzcpl.com` and turn on SSL. The form uses `sendmail` when the server provides it. If mail is not available, the contact page tells the visitor to write to that address.
+   - Output directory: `dist`
+   - Entry file: leave empty
+3. Save and redeploy.
+4. Create the mailbox `hello@razzcpl.com` and turn on SSL. Hostinger accepts the form’s From address only when that mailbox exists. The inbox is set at the top of `contact.php`.
 
 ### File Manager
 

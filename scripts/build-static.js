@@ -35,4 +35,5 @@ if (missing.length) {
   process.exit(1);
 }
 
+console.log("Output directory: dist");
 console.log("Static site copied to dist/");
