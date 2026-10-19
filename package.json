@@ -1,9 +1,14 @@
 {
   "name": "razzcpl",
   "private": true,
-  "description": "Razz Construction and Properties static site for razzcpl.com",
+  "description": "Razz Construction and Properties site for razzcpl.com",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "build": "node scripts/build-static.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
   },
   "engines": {
     "node": ">=18"

@@ -16,21 +16,20 @@ Open `http://127.0.0.1:8765/`. Binding to `127.0.0.1` keeps the preview on IPv4.
 
 ## Deploy on Hostinger
 
-The site is static HTML plus `contact.php`. `package.json` is there so hPanel’s Node.js Git import can see the repository. The build copies the site into `dist/` and does not start a Node server.
+Hostinger’s Node.js importer needs an application it can start. `server.js` serves the pages and accepts the contact form. `npm run build` also copies the site into `dist/` for a static upload.
 
 ### Git import
 
-1. In hPanel, open **Websites** → **Add Website** → **Node.js web app** → **Import Git repository**.
-2. Refresh the repository list and choose `razzcpl`.
-3. On the deploy settings screen, use:
-   - Framework: **Other**
+1. In hPanel, open the website → **Deployments** → **Deployment settings**.
+2. Set:
+   - Framework: **Express**
    - Branch: `main`
+   - Node.js: **22**
    - Build command: `build`
-   - Output directory: `dist`
-   - Entry file: leave empty
-4. Leave the entry file empty. An entry file would run a Node process and Apache would stop serving `contact.php`.
-5. Create the mailbox `hello@razzcpl.com` and turn on SSL. Hostinger accepts the form’s From address only when that mailbox exists.
-6. Send a test from the contact page. If it fails, the page tells the visitor to write to the same address. The inbox is set at the top of `contact.php`.
+   - Output directory: leave empty
+   - Entry file: `server.js`
+3. Save and redeploy. A push to `main` redeploys after this is saved.
+4. Create the mailbox `hello@razzcpl.com` and turn on SSL. The form uses `sendmail` when the server provides it. If mail is not available, the contact page tells the visitor to write to that address.
 
 ### File Manager
 
