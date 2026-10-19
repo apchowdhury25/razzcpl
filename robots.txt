@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://razzcpl.com/sitemap.xml
